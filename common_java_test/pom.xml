@@ -7,6 +7,50 @@
     <groupId>com.leonlg</groupId>
     <artifactId>common_java_test</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <lombok.version>1.18.22</lombok.version>
+        <grpc.version>1.45.1</grpc.version>
+        <protobuff.version>3.20.1</protobuff.version>
+        <protoc.version>3.20.1</protoc.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuff.version}</version>
+        </dependency>
+        <!-- gRPC Dependency Start -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+<!--        core包引用-->
+        <dependency>
+            <groupId>com.leon</groupId>
+            <artifactId>grcp-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
