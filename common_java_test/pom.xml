@@ -38,11 +38,11 @@
             <version>${grpc.version}</version>
         </dependency>
 <!--        core包引用-->
-        <dependency>
-            <groupId>com.leon</groupId>
-            <artifactId>grcp-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.leon</groupId>-->
+<!--            <artifactId>grcp-api</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
