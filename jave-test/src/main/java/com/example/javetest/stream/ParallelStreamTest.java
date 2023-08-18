@@ -64,5 +64,6 @@ public class ParallelStreamTest {
         System.out.println(threadSetTwo);
         System.out.println("threadSetTwo一共有" + threadSetTwo.size() + "个线程");
         System.out.println("系统一个有"+Runtime.getRuntime().availableProcessors()+"个cpu");
+
     }
 }
