@@ -10,7 +10,7 @@ import java.io.*;
 
 public class JayChouJSONGet {
     public static void main(String[] args) throws Exception {
-        FileInputStream file = new FileInputStream("src/main/resources/raw/周杰伦.xlsx");
+        FileInputStream file = new FileInputStream("src/main/resources/raw/周杰伦8-29.xlsx");
         XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
 

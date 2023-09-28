@@ -4,38 +4,36 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.util.StringUtils;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
-public class SingerNLGJSONGet {
+public class JJJSONGet {
     public static void main(String[] args) throws Exception {
-        FileInputStream file = new FileInputStream("src/main/resources/raw/singerNLG09101.xlsx");
+        FileInputStream file = new FileInputStream("src/main/resources/raw/林俊杰0925.xlsx");
         XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
 
-        int count = 0;
-        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/singerNameNLGMapping.json");
+        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/林俊杰.json");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         BufferedWriter writer = new BufferedWriter(outputStreamWriter);
         writer.write("{" + "\n");
+
+        int count = 0;
         String songName = "";
         int startIndex = 0;
         boolean begin = true;
 
         for (Row row : sheet) {
-            if(count == 0){
+            if (count == 0) {
                 count++;
                 continue;
             }
-//
-//            if(count <= 29){
-//                System.out.print(row.getCell(0).toString() + "::");
-//                System.out.println(row.getCell(1).toString());
-//            }
-//            count++;
+
             // 每次遇到第二列不为空的时候，得知改内容为歌曲名
-            if(!StringUtils.isEmpty(row.getCell(0).toString())){
+            if(!row.getCell(0).toString().isEmpty()){
                 songName = row.getCell(0).toString();
                 if(begin){
                     // 第一次实际上不需要添加 "},"
@@ -61,7 +59,7 @@ public class SingerNLGJSONGet {
         writer.write("}\n");
         writer.write("}");
         workbook.close();
-        file.close();
+//        fileOutputStream.close();
         writer.close();
     }
 }

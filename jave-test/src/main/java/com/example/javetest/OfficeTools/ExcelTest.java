@@ -19,86 +19,93 @@ public class ExcelTest {
      * @throws InvalidFormatException
      */
     public static void main(String[] args) throws Exception {
-        try {
-            FileInputStream file = new FileInputStream("src/main/resources/raw/singerNLGRaw.xlsx");
-            XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
-            Sheet sheet = workbook.getSheetAt(0);
-
-            int count = 0;
-            FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/singerNameNLGMapping.json");
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-            BufferedWriter writer = new BufferedWriter(outputStreamWriter);
-            writer.write("{" + "\n");
-            String songName = "";
-            int startIndex = 0;
-            boolean begin = true;
-
-            for (Row row : sheet) {
-                if(count == 0){
-                    count++;
-                    continue;
-                }
-                count++;
-                // 每次遇到第二列不为空的时候，得知改内容为歌曲名
-                if(!row.getCell(0).toString().isEmpty()){
-                    songName = row.getCell(0).toString();
-                    if(begin){
-                        // 第一次实际上不需要添加 "},"
-                        writer.write("\"" + songName + "\":{");
-                        begin = false;
-                    }else{
-                        // 将"}"的添加放到下一首歌曲的时候
-                        writer.write("},\n \"" + songName + "\":{");
-                    }
-                    startIndex = 1;
-                }
-                String keyValue = "";
-                if(startIndex != 1){
-                    // 将","的添加放到下一首歌曲的时候
-                    keyValue = String.format(",\n \"%s\":\"%s\"", startIndex, row.getCell(1).toString().trim());
-                }else{
-                    //是第一个下标的时候，就不需要在前面添加 ","
-                    keyValue = String.format("\"%s\":\"%s\"", startIndex, row.getCell(1).toString().trim());
-                }
-                writer.write(keyValue);
-                startIndex++;
-            }
-            writer.write("}\n");
-            writer.write("}");
-            workbook.close();
-            file.close();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileInputStream file = new FileInputStream("src/main/resources/raw/singerNLGRaw.xlsx");
+//            XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
+//            Sheet sheet = workbook.getSheetAt(0);
 //
+//            int count = 0;
+//            FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/singerNameNLGMapping.json");
+//            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+//            BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+//            writer.write("{" + "\n");
+//            String songName = "";
+//            int startIndex = 0;
+//            boolean begin = true;
 //
-//
-//        FileInputStream file = new FileInputStream("D:\\git\\summary_for_interview\\jave-test\\src\\test\\resources\\交规.xlsx");
-//        XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
-//        Sheet sheet = workbook.getSheetAt(0);
-//
-//        FileOutputStream fileOutputStream = new FileOutputStream("D:\\git\\summary_for_interview\\jave-test\\src\\test\\resources\\交规01.json");
-//        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-//        BufferedWriter writer = new BufferedWriter(outputStreamWriter);
-//        writer.write("{" + "\n");
-//
-//        int count = 0;
-//        for (Row row : sheet) {
-//            if(count == 0){
+//            for (Row row : sheet) {
+//                if(count == 0){
+//                    count++;
+//                    continue;
+//                }
 //                count++;
-//                continue;
+//                // 每次遇到第二列不为空的时候，得知改内容为歌曲名
+//                if(!row.getCell(0).toString().isEmpty()){
+//                    songName = row.getCell(0).toString();
+//                    if(begin){
+//                        // 第一次实际上不需要添加 "},"
+//                        writer.write("\"" + songName + "\":{");
+//                        begin = false;
+//                    }else{
+//                        // 将"}"的添加放到下一首歌曲的时候
+//                        writer.write("},\n \"" + songName + "\":{");
+//                    }
+//                    startIndex = 1;
+//                }
+//                String keyValue = "";
+//                if(startIndex != 1){
+//                    // 将","的添加放到下一首歌曲的时候
+//                    keyValue = String.format(",\n \"%s\":\"%s\"", startIndex, row.getCell(1).toString().trim());
+//                }else{
+//                    //是第一个下标的时候，就不需要在前面添加 ","
+//                    keyValue = String.format("\"%s\":\"%s\"", startIndex, row.getCell(1).toString().trim());
+//                }
+//                writer.write(keyValue);
+//                startIndex++;
 //            }
-//            String res = String.format("\"%s\":\"%s\"", row.getCell(0).toString(), Double.valueOf(row.getCell(2).toString()) + ":" + row.getCell(3).toString());
-//            if(count != sheet.getLastRowNum()){
-//                writer.write(res + ", \n");
-//            }else{
-//                writer.write(res + "\n");
-//            }
-//            count++;
+//            writer.write("}\n");
+//            writer.write("}");
+//            workbook.close();
+//            file.close();
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
 //        }
-//        writer.write("}" + "\n");
-//        writer.close();
+//
+//
+//
+        FileInputStream file = new FileInputStream("D:\\git\\summary_for_interview\\jave-test\\src\\test\\resources\\交规.xlsx");
+        XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        FileOutputStream fileOutputStream = new FileOutputStream("D:\\git\\summary_for_interview\\jave-test\\src\\test\\resources\\交规01.json");
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+        BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+        writer.write("{" + "\n");
+
+        int count = 0;
+        for (Row row : sheet) {
+            if(count == 0){
+                count++;
+                continue;
+            }
+            String tmp = "";
+            if(row.getCell(3).toString().contains("-")){
+                tmp = row.getCell(3).toString();
+            }else{
+                tmp = tmp + Math.round(Float.parseFloat(row.getCell(3).toString()));
+            }
+            String res = String.format("\"%s\":\"%s\"", row.getCell(0).toString().replaceAll("[，、]", "-"), Math.round(Float.parseFloat(row.getCell(2).toString())) + ":" + tmp);
+//            String res = String.format("\"%s\":\"%s\"", row.getCell(0).toString().replaceAll("[，、]", "-"), Double.valueOf(row.getCell(2).toString()) + ":" + row.getCell(3).toString());
+            if(count != sheet.getLastRowNum()){
+                writer.write(res + ", \n");
+            }else{
+                writer.write(res + "\n");
+            }
+            count++;
+        }
+        writer.write("}" + "\n");
+        writer.close();
 
 //        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/singerNameNLGMapping.json");
 //        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);

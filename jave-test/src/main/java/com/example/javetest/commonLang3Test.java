@@ -6,11 +6,12 @@ import com.example.javetest.util.HttpUtil;
 public class commonLang3Test {
 
     public static void main(String[] args) {
-        HttpUtil httpUtil = new HttpUtil();
-        String s = httpUtil.doHttpGet(HttpSearchType.food_info);
-        System.out.println(s);
-
-        String name = HttpSearchType.WEATHER_INFO.name();
-        System.out.println(name);
+//        HttpUtil httpUtil = new HttpUtil();
+//        String s = httpUtil.doHttpGet(HttpSearchType.food_info);
+//        System.out.println(s);
+//
+//        String name = HttpSearchType.WEATHER_INFO.name();
+//        System.out.println(name);
+        System.out.println(String.format("\"{}\"", "123"));
     }
 }

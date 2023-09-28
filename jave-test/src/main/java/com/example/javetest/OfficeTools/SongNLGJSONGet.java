@@ -6,16 +6,19 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.util.StringUtils;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
-public class SingerNLGJSONGet {
+public class SongNLGJSONGet {
     public static void main(String[] args) throws Exception {
-        FileInputStream file = new FileInputStream("src/main/resources/raw/singerNLG09101.xlsx");
+        FileInputStream file = new FileInputStream("src/main/resources/raw/songNLG0920.xlsx");
         XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
 
         int count = 0;
-        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/singerNameNLGMapping.json");
+        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/songNLG0920.json");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         BufferedWriter writer = new BufferedWriter(outputStreamWriter);
         writer.write("{" + "\n");
