@@ -25,11 +25,11 @@ public class MapNavigationNLGJSONGet_version02 {
     private static String branchNodeIndentationCount = "\t\t\t";
 
     public static void main(String[] args) throws Exception {
-        FileInputStream file = new FileInputStream("src/main/resources/raw/导航0908.xlsx");
+        FileInputStream file = new FileInputStream("src/main/resources/raw/导航1025.xlsx");
         XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
 
-        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/导航.json");
+        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/music/导航1025.json");
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         BufferedWriter writer = new BufferedWriter(outputStreamWriter);
         writer.write("{ \n");
