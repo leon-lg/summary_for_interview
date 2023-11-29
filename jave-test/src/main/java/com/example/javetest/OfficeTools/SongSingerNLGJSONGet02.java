@@ -15,11 +15,11 @@ import java.util.List;
 
 public class SongSingerNLGJSONGet02 {
     public static void main(String[] args) throws Exception {
-        FileInputStream file = new FileInputStream("src/main/resources/raw/songSingerNLG0904.xlsx");
+        FileInputStream file = new FileInputStream("src/main/resources/raw/songSingerNLG1124.xlsx");
         XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
 
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Paths.get("src/main/resources/music/songSingerNLG0831.json"))));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Paths.get("src/main/resources/music/songSingerNLG1124.json"))));
         writer.write("{\n");
 
         int count = 0;
