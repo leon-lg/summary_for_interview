@@ -23,7 +23,7 @@ public class RestrofitTest {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://scene-test.aijidou.com/engine/openai/")
+                .baseUrl("")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //这个Converter直接决定了传入参数到RequestBody，以及响应参数到ResponseBody的映射方式
                 .addConverterFactory(JacksonConverterFactory.create(objectMapper))
